@@ -5,29 +5,36 @@ let keysDwnKy =[];
 
 let lngs = { 
   ar: [ "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د","\\", "ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط", "ئ", "ء", "ؤ", "ر", "لا", "ى", "ة", "و", "ز", "ظ", "↓", "→", "↑", "مفتاح الأرقام", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter", "ShiftRight", "Ctrl", "Win", "AltLeft", "Space", "AltRight", "Fn", "Ctrl", "←","ذ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0","-","=","PageDown"], 
-  
-  en: [ "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "ShiftRight", "Ctrl", "Win", "AltLeft", "Space", "AltRight", "Fn", "Ctrl", "←", "↓", "→", "↑", "NumLock", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter","`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0","-","=","PageDown" ],
-  
-  fr: [ "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "^", "$", "*", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "ù",  "W", "X", "C", "V", "B", "N", ",", ";", ":", "!", "Shift", "Ctrl", "Win", "AltLeft", "Space", "ControlLeft", "Fn", "Ctrl", "←", "↓", "→", "↑", "VerrNum", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ",", "Enter","²", "&", "é", "\"", "'", "(", "-", "è", "_", "ç", "à",")","=" ,"Pg suiv"]};
 
-  console.log(lngs.en.length, lngs.fr.length, lngs.ar.length);
+  shftar: [ "َ", "ً", "ُ", "لإ", "لإ", "إ", "‘", "÷", "×", "؛", "<", ">","|", "ِ", "ٍ", "]", "[", "لأ", "أ", "ـ", "،", "/", ":", "\"", "~", "ْ", "}", "{", "لآ", "آ", "’", ",", ".", "؟", "↓", "→", "↑", "مفتاح الأرقام", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter", "ShiftRight", "Ctrl", "Win", "AltLeft", "Space", "AltRight", "Fn", "Ctrl", "←","ّ", "!", "@", "#", "$", "%", "^", "&", "*", ")", "(","_","+","PageDown"], 
+
+  en: [ "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "ShiftRight", "Ctrl", "Win", "AltLeft", "Space", "AltRight", "Fn", "Ctrl", "←", "↓", "→", "↑", "NumLock", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter","`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0","-","=","PageDown" ],
+
+  shften: [ "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "{", "}", "|", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "\"", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "ShiftRight", "Ctrl", "Win", "AltLeft", "Space", "AltRight", "Fn", "Ctrl", "←", "↓", "→", "↑", "NumLock", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter","~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")","_","+","PageDown" ],
+  
+  fr: [ "a", "z", "e", "r", "t", "y", "u", "i", "o", "p", "^", "$", "*", "q", "s", "d", "f", "g", "h", "j", "k", "l", "m", "ù",  "w", "x", "c", "v", "b", "n", ",", ";", ":", "!", "Shift", "Ctrl", "Win", "AltLeft", "Space", "ControlLeft", "Fn", "Ctrl", "←", "↓", "→", "↑", "VerrNum", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ",", "Enter","²", "&", "é", "\"", "'", "(", "-", "è", "_", "ç", "à",")","=" ,"Pg suiv"],
+  
+  shftfr: [ "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "¨", "£", "µ", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "%",  "W", "X", "C", "V", "B", "N", "?", ".", "/", "§", "Shift", "Ctrl", "Win", "AltLeft", "Space", "ControlLeft", "Fn", "Ctrl", "←", "↓", "→", "↑", "VerrNum", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ",", "Enter", "²", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0","-","=","Pg suiv"]};
+
   
 
 
 document.addEventListener("keydown", function (event) {
-  let namKy = event.code;
+  let namKy = event.code; 
 	// في لوحة QWERTY الإنجليزية: event.code 'KeyQ' → event.key 'q'
 	// في لوحة AZERTY الفرنسية: event.code 'KeyQ' → event.key 'a'
   if (event.code.includes("Key") ) {
-    namKy = namKy.slice(3) // الحصول على اسم المفتاح بدون "Key" 
+    namKy = namKy.slice(3).toLowerCase() // الحصول على اسم المفتاح بدون "Key" 
 	
   }
- 
-  console.log(namKy); 
-  console.log(event.key);
+ if(namKy.indexOf('Shift') > -1 && kybrdLng.indexOf('shft') == -1) {
+  kybrdLng= 'shft'+kybrdLng; changeKeyboardLanguage()
   
-	if ("Key" + event.key.toUpperCase() !== event.code && event.code.includes("Key") 
-    || event.key.toLowerCase() != document.getElementById('k'+ namKy).textContent.toLowerCase()) {
+}
+ 
+  
+	if ( event.key.toLowerCase() != document.getElementById('k'+ namKy).textContent.toLowerCase()
+           ) {
 		if (lngs.ar.indexOf(event.key) !== -1 && lngs.ar.indexOf(event.key) < 30) {
 			kybrdLng = "ar";
 		} else  {
@@ -43,27 +50,28 @@ document.addEventListener("keydown", function (event) {
   }
    characterPr.innerHTML = keysDwnKy.join( " + ");
  
-  document.getElementById('k'+ namKy).style.backgroundColor = '#17a2a9'; // استخدام classList.add بدلاً من className.add
-  // console.log(event.key, event.code, event.keyCode, event.charCode); 
+  document.getElementById('k'+ namKy).style.backgroundColor = '#17a2a9';
 });
 
 document.addEventListener('keyup', (e) => {
 
   setTimeout(() => {
-    
+    if(e.key.indexOf('Shift') > -1) {kybrdLng = kybrdLng.replace('shft', '');
+     changeKeyboardLanguage();}
     
    let namKy2 = e.code;
    
   if (e.code.includes("Key") ) {
-    namKy2 = namKy2.slice(3) // الحصول على اسم المفتاح بدون "Key" وتحويله إلى أحرف صغيرة
+    namKy2 = namKy2.slice(3).toLowerCase() 
   }
+  
   document.getElementById('k'+ namKy2).style.backgroundColor = '#555'; 
   let indNmKy = keysDwn.indexOf(namKy2);
   let indNmKy2 = keysDwn.indexOf(e.key);
-   keysDwn.splice(indNmKy, 1); // إزالة المفتاح من المصفوفة عند تحريره
-  keysDwnKy.splice(indNmKy2, 1); // إزالة المفتاح من المصفوفة عند تحريره
+   keysDwn.splice(indNmKy, 1); 
+  keysDwnKy.splice(indNmKy2, 1); 
    characterPr.innerHTML = keysDwnKy.join( " + ");
-  }, timeout = 300);
+  }, timeout = 100);
   
 });
 
