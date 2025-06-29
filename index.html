@@ -1,75 +1,83 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codes des touches et caractères vs types d'événements</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="imgs/imgkeybrd.jpg" sizes="any" />
+    <title>is Clicked</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/stlKeyBrd.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>Codes des touches et caractères vs types d'événements</h1>
+      <h1>is Clicked</h1>
 
-        <p>Entrez du texte avec des lettres majuscules et minuscules :</p>
-        <input type="text" id="keyboardInput">
+      <p>Entrez du texte avec des lettres majuscules et minuscules :</p>
+      <input type="text" id="keyboardInput" />
+    <div id="characterPr" class="char" ></div>
+      
 
-        <div class="table-container">
-            <h3>Propriétés des événements du clavier</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Données</th>
-                        <th>keydown</th>
-                        <th>keypress</th>
-                        <th>keyup</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>keyCode</td>
-                        <td id="kd-keyCode"></td>
-                        <td id="kp-keyCode"></td>
-                        <td id="ku-keyCode"></td>
-                    </tr>
-                    <tr style="display : none">
-                        <td>charCode</td>
-                        <td id="kd-charCode"></td>
-                        <td id="kp-charCode"></td>
-                        <td id="ku-charCode"></td>
-                    </tr>
-		    <tr>
-                        <td>Character</td>
-                        <td colspan="3" id="character" ></td>
-                    </tr>
-                    <tr>
-                        <td>Shift</td>
-                        <td colspan="3" id="shift"></td>
-                    </tr>
-                    <tr>
-                        <td>Ctrl</td>
-                        <td colspan="3" id="ctrl"></td>
-                    </tr>
-                    <tr>
-                        <td>Alt</td>
-                        <td colspan="3" id="alt"></td>
-                    </tr>
-                    <tr>
-                        <td>Meta</td>
-                        <td colspan="3" id="meta"></td>
-                    </tr>
+      <!-- keyboard -->
+     <div id="keyboardId" ></div>
 
-                    <tr style= "display:none" >
-                        <td>Target</td>
-                        <td colspan="3" id="target"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <!-- Table -->
+      <div class="table-container">
+        <h3>Propriétés des événements du clavier</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Données</th>
+              <th>keydown</th>
+              <th>keypress</th>
+              <th>keyup</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>keyCode</td>
+              <td id="kd-keyCode"></td>
+              <td id="kp-keyCode"></td>
+              <td id="ku-keyCode"></td>
+            </tr>
+            <tr style="display: none">
+              <td>charCode</td>
+              <td id="kd-charCode"></td>
+              <td id="kp-charCode"></td>
+              <td id="ku-charCode"></td>
+            </tr>
+            <tr>
+              <td>Character</td>
+              <td colspan="3" id="character"></td>
+            </tr>
+            <tr>
+              <td>Shift</td>
+              <td colspan="3" id="shift"></td>
+            </tr>
+            <tr>
+              <td>Ctrl</td>
+              <td colspan="3" id="ctrl"></td>
+            </tr>
+            <tr>
+              <td>Alt</td>
+              <td colspan="3" id="alt"></td>
+            </tr>
+            <tr>
+              <td>Meta</td>
+              <td colspan="3" id="meta"></td>
+            </tr>
 
-        <div class="log-container">
-            </div>
+            <tr style="display: none">
+              <td>Target</td>
+              <td colspan="3" id="target"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="log-container"></div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+    <script src="js/keyBrd.js"></script>
+  </body>
 </html>

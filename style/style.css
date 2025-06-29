@@ -7,6 +7,9 @@
 }
 
 .container {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
     max-width: 900px;
     margin: 20px auto;
     background-color: #fff;
@@ -14,7 +17,13 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+#keyboardId {
+        display: flex
+;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
 h1 {
     text-align: center;
     color: #0056b3;
@@ -28,11 +37,20 @@ p {
 #keyboardInput {
     width: 100%;
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+}
+.char {
+    height: 40px;
+    margin: 0 0 20px;
+    text-align: center;
+    font-size: 35px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #0f5b0f;
 }
 
 .table-container {

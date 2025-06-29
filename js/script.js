@@ -12,6 +12,7 @@
     // Références aux cellules du tableau pour les autres propriétés
     const targetEl = document.getElementById('target');
     const characterEl = document.getElementById('character');
+    const characterPr = document.getElementById('characterPr');
     const shiftEl = document.getElementById('shift');
     const ctrlEl = document.getElementById('ctrl');
     const altEl = document.getElementById('alt');
@@ -40,12 +41,10 @@
     document.addEventListener('keydown', (e) => {
         eventCounter++;
 
-if(e.keyCode == 9){
+e.preventDefault();
 
-}e.preventDefault();
-
-        kdKeyCode.textContent = e.keyCode;
-        kdCharCode.textContent = e.charCode;
+        kdKeyCode.textContent = e.key;
+        kdCharCode.textContent = e.code;
  // charCode est généralement 0 pour keydown
         updateCommonProperties(e);
         logEvent(e);
@@ -55,16 +54,16 @@ if(e.keyCode == 9){
     document.addEventListener('keypress', (e) => {
         // keypress n'a pas toujours un keyCode fiable, charCode est plus pertinent
         // C'est souvent l'événement qui renvoie le "caractère"
-        kpKeyCode.textContent = e.keyCode || '-';
-        kpCharCode.textContent = e.charCode || '-';
+        kpKeyCode.textContent = e.key || '-';
+        kpCharCode.textContent = e.code || '-';
         updateCommonProperties(e);
         logEvent(e);
         resetTableCells('keypress');
     });
 
     document.addEventListener('keyup', (e) => {
-        kuKeyCode.textContent = e.keyCode;
-        kuCharCode.textContent = e.charCode; // charCode est généralement 0 pour keyup
+        kuKeyCode.textContent = e.key;
+        kuCharCode.textContent = e.code; // charCode est généralement 0 pour keyup
         updateCommonProperties(e);
         logEvent(e);
         resetTableCells('keyup');
@@ -74,8 +73,9 @@ if(e.keyCode == 9){
         targetEl.textContent = e.target.tagName; // Ou e.target.id pour l'ID de l'élément
         // Pour `character`, e.key est moderne et plus précis pour la plupart des touches.
         // charCode est souvent utilisé pour keypress pour le caractère ASCII.
-	let chAct = e.key || String.fromCharCode(e.charCode || e.keyCode);
+	let chAct = e.key || String.fromCharCode(e.code || e.key);
         characterEl.textContent =chAct;
+        characterPr.textContent = chAct; // Affiche le caractère dans la div
 	keyboardInput.value = chAct;
         shiftEl.textContent = e.shiftKey ? 'true' : 'false';
         ctrlEl.textContent = e.ctrlKey ? 'true' : 'false';
@@ -86,8 +86,8 @@ if(e.keyCode == 9){
     function logEvent(e) {
         let charInfo = '';
         // Pour keypress, charCode est souvent le caractère lui-même
-        if (e.type === 'keypress' && e.charCode) {
-            charInfo = `[character:${String.fromCharCode(e.charCode)}]`;
+        if (e.type === 'keypress' && e.code) {
+            charInfo = `[character:${String.fromCharCode(e.code)}]`;
         } else if (e.key) { // e.key est plus moderne et couvre bien les caractères
             charInfo = `[character:${e.key}]`;
         }
@@ -96,9 +96,9 @@ if(e.keyCode == 9){
        /* const logEntry = document.createElement('div');
         logEntry.innerHTML = `
             ${charInfo}`
-	    [charCode:${e.charCode || '-'}] 
+	    [charCode:${e.code || '-'}] 
             ${e.type} (${eventCounter}) 
-            [keyCode:${e.keyCode || '-'}]
+            [keyCode:${e.key || '-'}]
             [shift:${e.shiftKey}] 
             [ctrl:${e.ctrlKey}] 
             [alt:${e.altKey}] 
@@ -108,3 +108,6 @@ if(e.keyCode == 9){
 	logContainer.innerHTML = `${charInfo}`
     }
 });
+
+
+
