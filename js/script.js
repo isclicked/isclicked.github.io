@@ -12,7 +12,7 @@
     // Références aux cellules du tableau pour les autres propriétés
     const targetEl = document.getElementById('target');
     const characterEl = document.getElementById('character');
-    const characterPr = document.getElementById('characterPr');
+    
     const shiftEl = document.getElementById('shift');
     const ctrlEl = document.getElementById('ctrl');
     const altEl = document.getElementById('alt');
@@ -75,7 +75,7 @@ e.preventDefault();
         // charCode est souvent utilisé pour keypress pour le caractère ASCII.
 	let chAct = e.key || String.fromCharCode(e.code || e.key);
         characterEl.textContent =chAct;
-        characterPr.textContent = chAct; // Affiche le caractère dans la div
+      
 	keyboardInput.value = chAct;
         shiftEl.textContent = e.shiftKey ? 'true' : 'false';
         ctrlEl.textContent = e.ctrlKey ? 'true' : 'false';

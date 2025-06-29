@@ -1,4 +1,7 @@
 kybrdLng = "en"; // اللغة الافتراضية للوحة المفاتيح
+const characterPr = document.getElementById('characterPr');
+let keysDwn =[];
+let keysDwnKy =[];
 
 let lngs = { 
   ar: [ "ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د","\\", "ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط", "ئ", "ء", "ؤ", "ر", "لا", "ى", "ة", "و", "ز", "ظ", "↓", "→", "↑", "مفتاح الأرقام", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter",], 
@@ -6,42 +9,58 @@ let lngs = {
   en: [ "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "ShiftRight", "Ctrl", "Win", "AltLeft", "Space", "AltRight", "Fn", "Ctrl", "←", "↓", "→", "↑", "NumLock", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ".", "Enter","PageDown" ],
   
   fr: [ "A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "^", "$", "*", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "ù",  "W", "X", "C", "V", "B", "N", ",", ";", ":", "!", "Shift", "Ctrl", "Win", "AltLeft", "Space", "ControlLeft", "Fn", "Ctrl", "←", "↓", "→", "↑", "VerrNum", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "0", ",", "Enter","Pg suiv" ], };
+
+
 document.addEventListener("keydown", function (event) {
   let namKy = event.code;
 	// في لوحة QWERTY الإنجليزية: event.code 'KeyQ' → event.key 'q'
 	// في لوحة AZERTY الفرنسية: event.code 'KeyQ' → event.key 'a'
   if (event.code.includes("Key") ) {
-    namKy = namKy.slice(3) // الحصول على اسم المفتاح بدون "Key" وتحويله إلى أحرف صغيرة
+    namKy = namKy.slice(3) // الحصول على اسم المفتاح بدون "Key" 
 	
   }
+ 
   console.log(namKy); 
   console.log(event.key);
   
-	if ("Key" + event.key.toUpperCase() !== event.code && event.code.includes("Key")) {
+	if ("Key" + event.key.toUpperCase() !== event.code && event.code.includes("Key") 
+    || event.key != document.getElementById('k'+ namKy).textContent.toLowerCase()) {
 		if (lngs.ar.indexOf(event.key) !== -1 && lngs.ar.indexOf(event.key) < 30) {
 			kybrdLng = "ar";
-		} else {
+		} else  {
 			kybrdLng = "fr";
 		}
     
     changeKeyboardLanguage()
 	}
   
-  
-  
+   if (keysDwn.indexOf(namKy) == -1) {
+    keysDwn.push(namKy);
+    keysDwnKy.push(event.key);
+  }
+   characterPr.innerHTML = keysDwnKy.join( " + ");
  
   document.getElementById('k'+ namKy).style.backgroundColor = '#17a2a9'; // استخدام classList.add بدلاً من className.add
   // console.log(event.key, event.code, event.keyCode, event.charCode); 
 });
 
 document.addEventListener('keyup', (e) => {
+
   setTimeout(() => {
-           let namKy2 = e.code;
+    
+    
+   let namKy2 = e.code;
+   
   if (e.code.includes("Key") ) {
     namKy2 = namKy2.slice(3) // الحصول على اسم المفتاح بدون "Key" وتحويله إلى أحرف صغيرة
   }
   document.getElementById('k'+ namKy2).style.backgroundColor = '#555'; 
-  }, timeout = 300); // تأخير لمدة 1000 مللي ثانية (1 ثانية)
+  let indNmKy = keysDwn.indexOf(namKy2);
+  let indNmKy2 = keysDwn.indexOf(e.key);
+   keysDwn.splice(indNmKy, 1); // إزالة المفتاح من المصفوفة عند تحريره
+  keysDwnKy.splice(indNmKy2, 1); // إزالة المفتاح من المصفوفة عند تحريره
+   characterPr.innerHTML = keysDwnKy.join( " + ");
+  }, timeout = 300);
   
 });
 document.addEventListener('keypress', (e) => {
@@ -52,14 +71,51 @@ document.addEventListener('keypress', (e) => {
   document.getElementById('k'+ namKy3).style.backgroundColor = '#17a2a9'; // استخدام classList.add بدلاً من className.add
       
       });
-  
+
+
+
+function updateCommonProperties(e) {
+        targetEl.textContent = e.target.tagName; // Ou e.target.id pour l'ID de l'élément
+        // Pour `character`, e.key est moderne et plus précis pour la plupart des touches.
+        // charCode est souvent utilisé pour keypress pour le caractère ASCII.
+	let chAct = e.key || String.fromCharCode(e.code || e.key);
+        characterEl.textContent =chAct;
+        characterPr.textContent = chAct; // Affiche le caractère dans la div
+	keyboardInput.value = chAct;
+        shiftEl.textContent = e.shiftKey ? 'true' : 'false';
+        ctrlEl.textContent = e.ctrlKey ? 'true' : 'false';
+        altEl.textContent = e.altKey ? 'true' : 'false';
+        metaEl.textContent = e.metaKey ? 'true' : 'false';
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let menuSvg = '<svg height="20px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-15.36 -15.36 542.72 542.72" xml:space="preserve" fill="#555555" stroke="#555555" stroke-width="20" transform="matrix(1, 0, 0, -1, 0, 0)rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.024"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#ffffff;} </style> <g> <path class="st0" d="M0,0v512h512V0H0z M407.992,398.492h-304v-57h304V398.492z M407.992,284.484h-304v-56.976h304V284.484z M407.992,170.492h-304V113.5h304V170.492z"></path> </g> </g></svg>'
 
 
 
+
 changeKeyboardLanguage()
 function changeKeyboardLanguage() {
+  
+  
 document.getElementById("keyboardId").innerHTML = `
 <div  class="keyboard-desktop">
   <div class="main-keyboard">
@@ -116,8 +172,8 @@ document.getElementById("keyboardId").innerHTML = `
           <button class="key" id="k${lngs.en[7]}">${lngs[kybrdLng][7]}</button>
           <button class="key" id="k${lngs.en[8]}">${lngs[kybrdLng][8]}</button>
           <button class="key" id="k${lngs.en[9]}">${lngs[kybrdLng][9]}</button>
-          <button class="key" id="k${lngs.en[10]}">${lngs[kybrdLng][10]}</button>
-          <button class="key" id="k${lngs.en[11]}">${lngs[kybrdLng][11]}</button>
+          <button class="key" id="kBracketLeft">${lngs[kybrdLng][10]}</button>
+          <button class="key" id="kBracketRight">${lngs[kybrdLng][11]}</button>
           <button class="key backslash-key" id="kBackslash">${lngs[kybrdLng][12]}</button>
           <span class="spacer large"></span>  
           <button class="key nav-key" id="kDelete">Del</button>
@@ -136,8 +192,8 @@ document.getElementById("keyboardId").innerHTML = `
       <button class="key" id="k${lngs.en[19]}">${lngs[kybrdLng][19]}</button>
       <button class="key" id="k${lngs.en[20]}">${lngs[kybrdLng][20]}</button>
       <button class="key" id="k${lngs.en[21]}">${lngs[kybrdLng][21]}</button>
-      <button class="key" id="k${lngs.en[22]}">${lngs[kybrdLng][22]}</button>
-      <button class="key" id="k${lngs.en[23]}">${lngs[kybrdLng][23]}</button>      
+      <button class="key" id="kSemicolon">${lngs[kybrdLng][22]}</button>
+      <button class="key" id="kQuote">${lngs[kybrdLng][23]}</button>      
       <button class="key enter-key" id="kEnter">Enter</button>
     </div>  
     <div class="keyboard-row">
@@ -214,9 +270,13 @@ document.getElementById("keyboardId").innerHTML = `
     </div>
   </div>
 </div>
-
-
 `;
+
+if (keysDwn.length >  0) {
+  keysDwn.forEach((key) => {
+    document.getElementById('k'+ key).style.backgroundColor = '#17a2a9'; 
+  });
+}
 }
 
 
